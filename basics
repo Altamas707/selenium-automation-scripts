@@ -1,0 +1,39 @@
+package dev.selenium.getting_started;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.time.Duration;
+
+public class FirstScript {
+    public static void main(String[] args) {
+        // Start the session
+        WebDriver driver = new ChromeDriver();
+
+        // Take action browser
+        driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+
+        // Request browser information
+        driver.getTitle();
+
+        // Establish Waiting Strategy
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(500));
+
+        // Find an element
+        WebElement textBox = driver.findElement(By.name("my-text"));
+        WebElement submitButton = driver.findElement(By.cssSelector("button"));
+
+        // Take action on element
+        textBox.sendKeys("Selenium");
+        submitButton.click();
+
+        // Request element information
+        WebElement message = driver.findElement(By.id("message"));
+        message.getText();
+
+        // End the session
+        driver.quit();
+    }
+}
